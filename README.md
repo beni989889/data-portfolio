@@ -28,6 +28,6 @@ Analysis of customer churn behavior to identify key factors affecting customer r
 ---
 
 ## Contact
-- GitHub: [your GitHub link]
+- GitHub: https://github.com/beni989889/data-portfolio
 - LinkedIn: https://www.linkedin.com/in/benjamin-benlulu/
 
