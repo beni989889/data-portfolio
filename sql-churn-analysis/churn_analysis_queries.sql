@@ -8,6 +8,8 @@ SELECT
     ) AS churn_rate
 FROM customers;
 
+-- --------------------------------------------
+
 -- Churn rate by contract type
 SELECT
     contract,
@@ -21,6 +23,7 @@ FROM customers
 GROUP BY contract
 ORDER BY churn_rate DESC;
 
+-- --------------------------------------------
 
 -- Churn by tenure groups
 SELECT
@@ -37,4 +40,32 @@ SELECT
     ) AS churn_rate
 FROM customers
 GROUP BY tenure_group
+ORDER BY churn_rate DESC;
+
+-- --------------------------------------------
+
+-- Business Question:
+-- Is there a relationship between monthly charges and customer churn?
+--
+-- Approach:
+-- Customers are grouped into Low, Medium and High monthly charge segments.
+-- For each segment, churn rate is calculated as the percentage of customers who churned.
+-- Customers are grouped into Low (<=50), Medium (51-80), High (>80) monthly charge segments.
+-- Output:
+-- Charge group, total customers, churned customers, churn rate (%)
+
+SELECT
+    CASE
+        WHEN c.MonthlyCharges <= 50 THEN 'Low'
+        WHEN c.MonthlyCharges <= 80 THEN 'Medium'
+        ELSE 'High'
+    END AS charge_group,
+    COUNT(*) AS number_of_customers,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
+    ROUND(
+        100.0 * SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) AS churn_rate
+FROM customers c
+GROUP BY charge_group
 ORDER BY churn_rate DESC;
