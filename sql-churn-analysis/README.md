@@ -31,3 +31,20 @@ For each group, the churn rate was calculated as the percentage of customers who
 ### Business Implications
 Customers with higher monthly costs may be more price-sensitive or feel they receive less value.  
 This suggests potential actions such as targeted discounts, contract incentives, or service improvements for high-paying customers.
+
+## Analysis: Churn by Contract Type and Internet Service
+
+### Business Question
+How does the combination of contract type and internet service affect customer churn?
+
+### Method
+Customers were grouped by contract type and internet service.
+For each combination, the churn rate was calculated as the percentage of customers who churned.
+
+### Key Findings
+- Customers with month-to-month contracts show the highest churn rates across internet service types
+- Certain internet services combined with short-term contracts are associated with particularly high churn
+
+### Business Implications
+Customers on short-term contracts, especially those using specific internet services, may require targeted retention strategies such as contract incentives or service improvements.
+

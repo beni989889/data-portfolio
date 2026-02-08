@@ -69,3 +69,29 @@ SELECT
 FROM customers c
 GROUP BY charge_group
 ORDER BY churn_rate DESC;
+
+-- --------------------------------------------
+
+-- Business Question:
+-- How does the combination of contract type and internet service affect customer churn?
+--
+-- Approach:
+-- Customers are grouped by contract type and internet service.
+-- For each group, the churn rate is calculated as the percentage of customers who churned.
+--
+-- Output:
+-- Contract type, internet service, total customers, churned customers, churn rate (%)
+
+
+SELECT
+    c.Contract,
+    c.InternetService,
+    COUNT(*) AS total_customers,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
+    ROUND(
+        100.0 * SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) AS churn_rate
+FROM customers c
+GROUP BY c.Contract, c.InternetService
+ORDER BY churn_rate DESC;
